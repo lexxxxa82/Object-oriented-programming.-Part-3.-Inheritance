@@ -52,14 +52,6 @@ public abstract class Transport {
         }
     }
 
-//    public Transport(String brand, String model, int productionYear, String productionCountry, String color) {
-//        this.brand = brand;
-//        this.model = model;
-//        this.productionYear = productionYear;
-//        this.productionCountry = productionCountry;
-//        this.color = color;
-//    }
-
     public String getBrand() {
         return brand;
     }

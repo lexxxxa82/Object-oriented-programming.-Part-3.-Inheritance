@@ -50,23 +50,6 @@ public class Car extends Transport {
     }
 
 
-//    public Car(String brand, String model, double engineVolume, String color, int productionYear, String productionCountry) {
-//        this(
-//                brand,
-//                model,
-//                engineVolume,
-//                color,
-//                productionYear,
-//                productionCountry,
-//                "Механическа КПП",
-//                "неопределен",
-//                "x000xx000",
-//                5,
-//                true,
-//                new Key()
-//        );
-//    }
-
     public double getEngineVolume() {
         return engineVolume;
     }
