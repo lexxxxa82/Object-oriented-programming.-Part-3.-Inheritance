@@ -4,74 +4,68 @@ import java.util.Objects;
 
 public class Car extends Transport {
     private double engineVolume;
-    private   String gears;
-    private final  String typeOfBody;
-    private String  regNumber;
+    private String gears;
+    private final String typeOfBody;
+    private String regNumber;
     private final int seatsCount;
     private boolean summerTiers;
     private final Key key;
 
-    public Car(
-            String brand,
-            String model,
-            double engineVolume,
-            String color,
-            int productionYear,
-            String productionCountry,
-            String gears,
-            String typeOfBody,
-            String regNumber,
-            int seatsCount,
-            boolean summerTires,
-            Key key) {
+    public Car() {
+        super("", "", 0, "", "", 0);
+        engineVolume = 1.5;
+        gears = "Механическа КПП";
+        typeOfBody = "неопределен";
+        regNumber = "x000xx000";
+        seatsCount = 5;
+        summerTiers = true;
+        key = new Key();
+    }
 
-        super(brand, model, productionYear,productionCountry, color);
-
-
-
-        if (engineVolume <= 0 ) {
-            engineVolume = 1.5;
+    public Car(String brand, String model, double engineVolume, int productionYear, String productionCountry, String bodyColor, int maximumSpeed, String gears, String typeOfBody, String regNumber, int seatsCount, boolean summerTires, Key key) {
+        super(brand, model, productionYear, productionCountry, bodyColor, maximumSpeed);
+        if (engineVolume <= 0) {
+            this.engineVolume = 1.5;
+        } else {
+            this.engineVolume = engineVolume;
         }
-        this.engineVolume = engineVolume;
-
-
         if (typeOfBody == null || typeOfBody.isEmpty()) {
-            typeOfBody = "неопределен";
+            this.typeOfBody = "неопределен";
+        } else {
+            this.typeOfBody = typeOfBody;
         }
-        this.typeOfBody = typeOfBody;
-
-
         if (gears == null || gears.isEmpty()) {
-            gears = "Механическа КПП";
+            this.gears = "Механическа КПП";
+        } else {
+            this.gears = gears;
         }
-        this.gears = gears;
-
         if (regNumber == null || regNumber.isEmpty()) {
-            regNumber = "x000xx000";
+            this.regNumber = "x000xx000";
+        } else {
+            this.regNumber = regNumber;
         }
-        this.regNumber = regNumber;
-
-        this.key = Objects.requireNonNullElseGet(key, Key::new);
         this.seatsCount = seatsCount;
         this.summerTiers = summerTires;
+        this.key = new Key(key.remoteStartEngine, key.keylessAccess);
     }
 
-    public Car(String brand, String model, double engineVolume, String color, int productionYear, String productionCountry) {
-        this(
-                brand,
-                model,
-                engineVolume,
-                color,
-                productionYear,
-                productionCountry,
-                "Механическа КПП",
-                "неопределен",
-                "x000xx000",
-                5,
-                true,
-                new Key()
-        );
-    }
+
+//    public Car(String brand, String model, double engineVolume, String color, int productionYear, String productionCountry) {
+//        this(
+//                brand,
+//                model,
+//                engineVolume,
+//                color,
+//                productionYear,
+//                productionCountry,
+//                "Механическа КПП",
+//                "неопределен",
+//                "x000xx000",
+//                5,
+//                true,
+//                new Key()
+//        );
+//    }
 
     public double getEngineVolume() {
         return engineVolume;
@@ -129,12 +123,13 @@ public class Car extends Transport {
         if (regNumber.length() != 9) {
             return false;
         }
-        char[] chars  = regNumber.toCharArray();
+        char[] chars = regNumber.toCharArray();
         if (!Character.isAlphabetic(chars[0]) || !Character.isAlphabetic(chars[4]) || !Character.isAlphabetic(chars[5])) {
             return false;
         }
         return Character.isDigit(chars[1]) && Character.isDigit(chars[2]) && Character.isDigit(chars[3]) && Character.isDigit(chars[6]) && Character.isDigit(chars[7]) && Character.isDigit(chars[8]);
     }
+
     public static class Key {
         private final boolean remoteStartEngine;
         private final boolean keylessAccess;
@@ -155,21 +150,23 @@ public class Car extends Transport {
         public boolean isKeylessAccess() {
             return keylessAccess;
         }
+
     }
+
     @Override
-    public  String toString (){
+    public String toString() {
         return getBrand() + " " + getModel() +
-                        ", год выпуск: " + getProductionYear() +
-                        ", страна сборки " + getProductionCountry() +
-                        ", цвет кузова: " + getColor() +
-                        ", объем двигателя: " + getEngineVolume() +
-                        ", коробка передач: " + getGears() +
-                        ", тип кузова " + getTypeOfBody() +
-                        ", рег. номер " + getRegNumber() +
-                        ", количество мест " + getSeatsCount() +
-                        ",   " + (isSummerTiers() ? "летняя" : "зимняя") + " резина"+
-                         (getKey().isKeylessAccess() ? " доступ без ключа" : " доступ с ключом") + ", " +
-                         (getKey().isRemoteStartEngine() ? " дистанционный запуск двигателя" : " " +
+                ", год выпуск: " + getProductionYear() +
+                ", страна сборки " + getProductionCountry() +
+                ", цвет кузова: " + getColor() +
+                ", объем двигателя: " + getEngineVolume() +
+                ", коробка передач: " + getGears() +
+                ", тип кузова " + getTypeOfBody() +
+                ", рег. номер " + getRegNumber() +
+                ", количество мест " + getSeatsCount() +
+                ",   " + (isSummerTiers() ? "летняя" : "зимняя") + " резина" +
+                (getKey().isKeylessAccess() ? " доступ без ключа" : " доступ с ключом") + ", " +
+                (getKey().isRemoteStartEngine() ? " дистанционный запуск двигателя" : " " +
                         "классический запуск двигателя");
 
     }
