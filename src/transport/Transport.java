@@ -3,47 +3,53 @@ package transport;
 import java.util.Objects;
 
 public abstract class Transport {
-    private  String brand;
-    private  String model;
-    private   int productionYear;
-    private   String productionCountry;
+    private String brand;
+    private String model;
+    private final int productionYear;
+    private String productionCountry;
     private String color;
-    private  int maxSpeed;
+    private int maxSpeed;
 
 
-    public  Transport (String brand, String model,
-                       int productionYear, String productionCountry,
-                       String color, int maxSpeed) {
+    public Transport(String brand, String model,
+                     int productionYear, String productionCountry,
+                     String color, int maxSpeed) {
 
         if (brand == null || brand.isEmpty() || brand.isBlank()) {
-            brand = "ошибка";
+            this.brand = "ошибка";
+        } else {
+            this.brand = brand;
         }
-        this.brand = brand;
 
         if (model == null || model.isEmpty() || model.isBlank()) {
-            model = "ошибка";
+            this.model = "ошибка";
+        } else {
+            this.model = model;
         }
-        this.model = model;
 
 
-        if (productionYear <= 0 ) {
+        if (productionYear <= 0) {
             productionYear = 2000;
         }
         this.productionYear = productionYear;
 
         if (productionCountry == null || productionCountry.isEmpty() || productionCountry.isBlank()) {
-            productionCountry = "ошибка";}
-        this.productionCountry = productionCountry;
+            this.productionCountry = "ошибка";
+        } else {
+            this.productionCountry = productionCountry;
+        }
 
         if (color == null || color.isEmpty() || color.isBlank()) {
-            color = "Белый";
+            this.color = "Белый";
+        } else {
+            this.color = color;
         }
-        this.color = color;
 
-        if (maxSpeed <= 0 ) {
-            maxSpeed = 180;
+        if (maxSpeed <= 0) {
+            this.maxSpeed = 180;
+        } else {
+            this.maxSpeed = maxSpeed;
         }
-        this.maxSpeed = maxSpeed;
     }
 
     public Transport(String brand, String model, int productionYear, String productionCountry, String color) {
@@ -79,18 +85,26 @@ public abstract class Transport {
     }
 
     public void setColor(String color) {
-        this.color = color;
+        if (color == null || color.isEmpty() || color.isBlank()) {
+            this.color = "Белый";
+        } else {
+            this.color = color;
+        }
     }
 
     public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
+        if (maxSpeed <= 0) {
+            this.maxSpeed = 180;
+        } else {
+            this.maxSpeed = maxSpeed;
+        }
     }
 
     @Override
     public String toString() {
         return
-                "Марка " + brand  +
-                        ", модель " + model  +
+                "Марка " + brand +
+                        ", модель " + model +
                         ", год производства " + productionYear +
                         ", страна производства " + productionCountry +
                         ", цвет " + color +

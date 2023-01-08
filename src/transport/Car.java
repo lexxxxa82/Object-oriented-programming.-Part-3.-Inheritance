@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class Car extends Transport {
     private double engineVolume;
-    private   String gears;
-    private final  String typeOfBody;
-    private String  regNumber;
+    private String gears;
+    private final String typeOfBody;
+    private String regNumber;
     private final int seatsCount;
     private boolean summerTiers;
     private final Key key;
@@ -25,11 +25,10 @@ public class Car extends Transport {
             boolean summerTires,
             Key key) {
 
-        super(brand, model, productionYear,productionCountry, color);
+        super(brand, model, productionYear, productionCountry, color);
 
 
-
-        if (engineVolume <= 0 ) {
+        if (engineVolume <= 0) {
             engineVolume = 1.5;
         }
         this.engineVolume = engineVolume;
@@ -129,12 +128,13 @@ public class Car extends Transport {
         if (regNumber.length() != 9) {
             return false;
         }
-        char[] chars  = regNumber.toCharArray();
+        char[] chars = regNumber.toCharArray();
         if (!Character.isAlphabetic(chars[0]) || !Character.isAlphabetic(chars[4]) || !Character.isAlphabetic(chars[5])) {
             return false;
         }
         return Character.isDigit(chars[1]) && Character.isDigit(chars[2]) && Character.isDigit(chars[3]) && Character.isDigit(chars[6]) && Character.isDigit(chars[7]) && Character.isDigit(chars[8]);
     }
+
     public static class Key {
         private final boolean remoteStartEngine;
         private final boolean keylessAccess;
@@ -156,20 +156,21 @@ public class Car extends Transport {
             return keylessAccess;
         }
     }
+
     @Override
-    public  String toString (){
+    public String toString() {
         return getBrand() + " " + getModel() +
-                        ", год выпуск: " + getProductionYear() +
-                        ", страна сборки " + getProductionCountry() +
-                        ", цвет кузова: " + getColor() +
-                        ", объем двигателя: " + getEngineVolume() +
-                        ", коробка передач: " + getGears() +
-                        ", тип кузова " + getTypeOfBody() +
-                        ", рег. номер " + getRegNumber() +
-                        ", количество мест " + getSeatsCount() +
-                        ",   " + (isSummerTiers() ? "летняя" : "зимняя") + " резина"+
-                         (getKey().isKeylessAccess() ? " доступ без ключа" : " доступ с ключом") + ", " +
-                         (getKey().isRemoteStartEngine() ? " дистанционный запуск двигателя" : " " +
+                ", год выпуск: " + getProductionYear() +
+                ", страна сборки " + getProductionCountry() +
+                ", цвет кузова: " + getColor() +
+                ", объем двигателя: " + getEngineVolume() +
+                ", коробка передач: " + getGears() +
+                ", тип кузова " + getTypeOfBody() +
+                ", рег. номер " + getRegNumber() +
+                ", количество мест " + getSeatsCount() +
+                ",   " + (isSummerTiers() ? "летняя" : "зимняя") + " резина" +
+                (getKey().isKeylessAccess() ? " доступ без ключа" : " доступ с ключом") + ", " +
+                (getKey().isRemoteStartEngine() ? " дистанционный запуск двигателя" : " " +
                         "классический запуск двигателя");
 
     }
