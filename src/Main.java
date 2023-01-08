@@ -19,7 +19,7 @@ public class Main {
 
         Bus daewoo = new Bus("DAEWOO", "Пассажисркий", 2010, "Южная корея", "белый", 180);
         Bus kamaz = new Bus("Камаз", "Пассажисркий", 2020, "Россия", "зеленый", 160);
-        Bus mercedes= new Bus("MERCEDES ", "Пассажисркий", 2018, "Германия", "серый", 180);
+        Bus mercedes = new Bus("MERCEDES ", "Пассажисркий", 2018, "Германия", "серый", 180);
         System.out.println(daewoo);
         System.out.println(kamaz);
         System.out.println(mercedes);
