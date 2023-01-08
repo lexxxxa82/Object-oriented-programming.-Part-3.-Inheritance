@@ -11,9 +11,7 @@ public abstract class Transport {
     private int maxSpeed;
 
 
-    public Transport(String brand, String model,
-                     int productionYear, String productionCountry,
-                     String color, int maxSpeed) {
+    public Transport(String brand, String model, int productionYear, String productionCountry, String color, int maxSpeed) {
 
         if (brand == null || brand.isEmpty() || brand.isBlank()) {
             this.brand = "ошибка";
@@ -27,11 +25,11 @@ public abstract class Transport {
             this.model = model;
         }
 
-
         if (productionYear <= 0) {
-            productionYear = 2000;
+            this.productionYear = 2000;
+        } else {
+            this.productionYear = productionYear;
         }
-        this.productionYear = productionYear;
 
         if (productionCountry == null || productionCountry.isEmpty() || productionCountry.isBlank()) {
             this.productionCountry = "ошибка";
@@ -52,13 +50,13 @@ public abstract class Transport {
         }
     }
 
-//    public Transport(String brand, String model, int productionYear, String productionCountry, String color) {
-//        this.brand = brand;
-//        this.model = model;
-//        this.productionYear = productionYear;
-//        this.productionCountry = productionCountry;
-//        this.color = color;
-//    }
+    public Transport(String brand, String model, int productionYear, String productionCountry, String color) {
+        this.brand = brand;
+        this.model = model;
+        this.productionYear = productionYear;
+        this.productionCountry = productionCountry;
+        this.color = color;
+    }
 
     public String getBrand() {
         return brand;
@@ -102,14 +100,7 @@ public abstract class Transport {
 
     @Override
     public String toString() {
-        return
-                "Марка " + brand +
-                        ", модель " + model +
-                        ", год производства " + productionYear +
-                        ", страна производства " + productionCountry +
-                        ", цвет " + color +
-                        ", максимальная скорость " + maxSpeed
-                ;
+        return "Марка " + brand + ", модель " + model + ", год производства " + productionYear + ", страна производства " + productionCountry + ", цвет " + color + ", максимальная скорость " + maxSpeed;
     }
 
     @Override
